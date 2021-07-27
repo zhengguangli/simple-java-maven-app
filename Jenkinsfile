@@ -21,7 +21,7 @@ pipeline {
 
       }
       steps {
-        junit(testResults: 'test-results.xml', allowEmptyResults: true)
+        junit 'target/surefire-reports/*.xml'
       }
     }
 
