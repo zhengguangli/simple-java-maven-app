@@ -13,21 +13,20 @@ pipeline {
       }
     }
 
-    stage('Test') {
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
+    stage('Deliver') {
+      parallel {
+        stage('Deliver') {
+          steps {
+            sh './jenkins/scripts/deliver.sh'
+          }
         }
 
-      }
-      steps {
-        junit 'target/surefire-reports/*.xml'
-      }
-    }
+        stage('Test') {
+          steps {
+            junit 'target/surefire-reports/*.xml'
+          }
+        }
 
-    stage('Deliver') {
-      steps {
-        sh './jenkins/scripts/deliver.sh'
       }
     }
 
