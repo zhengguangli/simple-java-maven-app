@@ -14,19 +14,14 @@ pipeline {
     }
 
     stage('Deliver') {
-      parallel {
-        stage('Deliver') {
-          steps {
-            sh './jenkins/scripts/deliver.sh'
-          }
-        }
+      steps {
+        sh './jenkins/scripts/deliver.sh'
+      }
+    }
 
-        stage('Test') {
-          steps {
-            junit 'target/surefire-reports/*.xml'
-          }
-        }
-
+    stage('') {
+      steps {
+        sh 'junit \'target/surefire-reports/*.xml\''
       }
     }
 
