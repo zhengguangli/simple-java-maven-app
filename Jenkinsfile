@@ -19,9 +19,9 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('Test') {
       steps {
-        sh 'junit \'target/surefire-reports/*.xml\''
+        cleanWs(externalDelete: 'junit \'target/surefire-reports/*.xml\'')
       }
     }
 
